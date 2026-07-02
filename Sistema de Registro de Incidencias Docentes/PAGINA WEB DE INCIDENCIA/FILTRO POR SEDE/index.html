@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Filtro - Registro Incidencias (T.I.)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#eef2f6; margin:0; padding:20px; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+    .card { background:#fff; padding:26px; border-radius:14px; box-shadow:0 4px 16px rgba(0,0,0,0.12); max-width:640px; width:100%; }
+    h1 { margin:0 0 12px; color:#0a3d62; font-size:21px; font-weight:700; }
+    label { display:block; margin-top:14px; font-weight:600; color:#2c3e50; font-size:14px; }
+    select, button { width:100%; padding:12px; margin-top:6px; border-radius:8px; border:1px solid #c8d1dc; font-size:14px; box-sizing:border-box; background:#fff; }
+    select:focus, button:focus { outline:2px solid #2980b9; }
+    .note { background:#e9f4ff; border-left:4px solid #3498db; padding:12px; border-radius:6px; margin-top:14px; font-size:13px; color:#2c3e50; }
+    button { background:#2980b9; color:white; font-weight:600; cursor:pointer; transition:.2s; border:none; }
+    button:hover { background:#1f6c98; }
+    .footer-text { margin-top:14px; font-size:13px; color:#6c7a89; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Filtro para generación de URL — Registro de Incidencias</h1>
+    <div class="note">
+      Selecciona Sede → Tipo de ambiente → Ambiente. Luego pulsa "Abrir formulario".
+    </div>
+
+    <!-- SELECCIÓN -->
+    <label for="sede">Sede</label>
+    <select id="sede">
+      <option value="" selected disabled>— Seleccione la sede —</option>
+      <option value="ATE">ATE</option>
+      <option value="SURCO">SURCO</option>
+    </select>
+
+    <label for="tipo">Tipo de ambiente</label>
+    <select id="tipo">
+      <option value="" selected disabled>— Seleccione el tipo —</option>
+      <option value="Aula">Aula</option>
+      <option value="Laboratorio">Laboratorio</option>
+    </select>
+
+    <label for="ambiente">Ambiente</label>
+    <select id="ambiente">
+      <option value="" selected disabled>— Seleccione un ambiente —</option>
+    </select>
+
+    <button id="abrir" style="margin-top:18px;">🔗 Abrir formulario</button>
+
+    <div class="footer-text">
+      Consejo: puedes copiar la URL generada y guardarla por ambiente para uso directo del docente.
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const ambientes = {
+        ATE: {
+          Aula: [
+            "AULA 301","AULA 302","AULA 303","AULA 304","AULA 305","AULA 306",
+            "AULA 401","AULA 402","AULA 403","AULA 404","AULA 405","AULA 406",
+            "AULA 501","AULA 502","AULA 503","AULA 504","AULA 505","AULA 506",
+            "AULA 601","AULA 602","AULA 603","AULA 604","AULA 605","AULA 605","AULA 701","AULA 702","AULA 703","AULA 704","AULA 705"
+          ],
+          Laboratorio: [
+            "LABORATORIO 03","LABORATORIO 04","LABORATORIO 05","LABORATORIO 06","LABORATORIO 07A","LABORATORIO 07B"
+          ]
+        },
+        SURCO: {
+          Aula: [
+            "AULA 201","AULA 202","AULA 203"
+          ],
+          Laboratorio: [
+            "LABORATORIO 02","LABORATORIO 03"
+          ]
+        }
+      };
+
+      const sedeSel = document.getElementById('sede');
+      const tipoSel = document.getElementById('tipo');
+      const ambSel  = document.getElementById('ambiente');
+      const btnAbrir = document.getElementById('abrir');
+
+      function poblarAmbientes() {
+        ambSel.innerHTML = '<option value="" selected disabled>— Seleccione un ambiente —</option>';
+        const s = sedeSel.value;
+        const t = tipoSel.value;
+        if (!s || !t) return;
+        (ambientes[s][t] || []).forEach(a => {
+          ambSel.innerHTML += `<option value="${a}">${a}</option>`;
+        });
+      }
+
+      sedeSel.addEventListener('change', poblarAmbientes);
+      tipoSel.addEventListener('change', poblarAmbientes);
+
+      btnAbrir.addEventListener('click', function(){
+        if(!sedeSel.value || !tipoSel.value || !ambSel.value){
+          alert("Por favor seleccione sede, tipo y ambiente.");
+          return;
+        }
+        const url = 'file:///C:/Users/rsedano/Desktop/INCIDENCIAS%20TECNOLOGICAS%20WEB/-INCIDENCIA%20CERTUS%20(OPERATIVO)/REGISTRO%20INCIDENCIA%20CERTUS/index.html?sede=' + encodeURIComponent(sedeSel.value)
+          + '&tipo=' + encodeURIComponent(tipoSel.value)
+          + '&ambiente=' + encodeURIComponent(ambSel.value);
+        window.open(url, '_blank');
+      });
+
+    })();
+  </script>
+</body>
+</html>
