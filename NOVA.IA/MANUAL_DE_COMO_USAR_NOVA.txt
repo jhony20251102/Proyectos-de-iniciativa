@@ -1,0 +1,43 @@
+MANUAL DE EVALUACIÓN - NOVA.IA
+==============================
+
+Bienvenido al código fuente de Nova.IA. Este breve manual está diseñado para guiar al equipo de evaluación en el proceso de configuración y prueba técnica del asistente virtual.
+
+1. PREPARACIÓN DEL ENTORNO
+--------------------------
+Antes de iniciar el proyecto, asegúrate de tener instalado Node.js (https://nodejs.org/). 
+Por buenas prácticas de desarrollo, este repositorio no incluye las carpetas pesadas de dependencias (node_modules), por lo que deberán instalarse localmente.
+
+Abre una terminal en la carpeta principal del proyecto y ejecuta:
+npm install
+
+Luego, entra a la carpeta del backend y haz lo mismo:
+cd backend
+npm install
+
+2. CONFIGURACIÓN DE INTELIGENCIA ARTIFICIAL (API KEY)
+-----------------------------------------------------
+Para que el núcleo inteligente de Nova.IA pueda procesar lenguaje natural y generar respuestas de forma ultrarrápida, el código ha sido preparado en modo "plantilla". 
+Es necesario que agregues tu propia clave de API directamente en el archivo de servicios.
+
+A. Conectar la API de Groq (Cerebro Textual de la IA)
+Nova.IA utiliza el motor de Groq (basado en Llama 3) para procesar y generar respuestas de forma eficiente. 
+
+1) Abre el archivo: backend/src/services/aiService.js
+2) En las primeras líneas de la clase, busca lo siguiente:
+   const GROQ_API_KEY = 'PON_TU_API_KEY_GROQ_AQUI';
+3) Reemplaza el texto 'PON_TU_API_KEY_GROQ_AQUI' con tu propia clave de API proporcionada por Groq.
+
+Nota: Todos los datos personales, bases de datos históricas y credenciales del autor han sido removidos por estricta seguridad. Para poder evaluar el funcionamiento real del asistente, es indispensable colocar credenciales activas en el espacio indicado. (La voz es generada gratuitamente por las APIs web de Google de forma nativa).
+
+3. INICIALIZACIÓN DEL ASISTENTE
+------------------------------- 
+Una vez que las dependencias estén instaladas y el API de Groq configurada en el código, el sistema está completamente listo para ser probado.
+
+Para tu comodidad, no es necesario levantar los servidores manualmente por consola. Simplemente dirígete a la carpeta principal del proyecto y haz doble clic en el archivo ejecutable:
+
+👉 Lanzar_Nova.bat
+
+Este script se encargará de levantar el servidor backend de manera paralela junto con la interfaz del frontend, y abrirá el sistema automáticamente en tu navegador para que puedas comenzar a interactuar y evaluar a Nova.IA. 
+
+¡Gracias por tu revisión!

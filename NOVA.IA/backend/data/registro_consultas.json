@@ -1,0 +1,19 @@
+{
+  "historial": [
+    {
+      "pregunta": "ejemplo de pregunta para nova",
+      "respuesta": "Esta es la respuesta que dio Nova.IA en ese momento.",
+      "conteo": 1,
+      "primera_vez": "2026-03-05 14:57:54",
+      "ultima_vez": "2026-03-05 14:57:54"
+    },
+    {
+      "pregunta": "Nova Qué día es hoy",
+      "respuesta": "Hoy es un hermoso día en Certus.",
+      "conteo": 2,
+      "primera_vez": "05/03/2026, 16:01:38",
+      "ultima_vez": "06/03/2026, 21:28:37"
+    }
+  ],
+  "sin_respuesta": []
+}
