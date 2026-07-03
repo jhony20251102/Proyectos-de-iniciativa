@@ -14,7 +14,6 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 
-
 process.on('uncaughtException', (err) => {
   console.error('Uncaught Exception:', err);
 });
