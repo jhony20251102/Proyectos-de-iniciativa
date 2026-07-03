@@ -293,7 +293,7 @@ app.delete('/api/users/:id', async (req, res) => {
 app.post('/api/clients/batch-delete', async (req, res) => {
   try {
     const { ids, userEmail } = req.body;
-    if (userEmail !== 'rickysedano1@gmail.com') {
+    if (userEmail !== 'agregarcorreoaqui@aaaa.com') {
       return res.status(403).json({ error: "No autorizado. Solo el Superadmin puede eliminar equipos." });
     }
     if (!ids || !Array.isArray(ids)) {
